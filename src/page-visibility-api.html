@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Visibility API</title>
+</head>
+<body>
+    
+    <h1>Page Visibility API</h1>
+    <a href="./index.html">Home</a>
+
+    <hr />
+
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">
+            https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API
+        </a>
+    </p>
+
+    <p>Uruchamia się w momencie gdy wartość document.visibilityState zostanie zmieniona.</p>
+    
+    <script>
+
+        if (typeof document.hidden === "undefined") {
+            throw new Error('This browser doesn\'t support the Page Visibility API');
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            console.log('document.visibilityState', document.visibilityState);
+
+            if (document.visibilityState === 'visible') {
+                document.title = 'Come back to me 🥺';
+            } else {
+                document.title = 'Oh, Hi Mark 👋🏻';
+            }
+        });
+
+    </script>
+
+</body>
+</html>

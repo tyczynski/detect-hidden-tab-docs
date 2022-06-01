@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window.(blur|focus)</title>
+</head>
+<body>
+    
+    <h1>window.(blur|focus)</h1>
+    <a href="./index.html">Home</a>
+
+    <hr />
+
+    <p>Poniższe zdarzenia nie mówią jednoznacznie czy karta jest w pełni zakryta/niewidoczna.</p>
+
+    <h2>window.onfocus</h2>
+
+    <p>Zdarzenie uruchamia się gdy obiekt window zostanie aktywowany czyli wtedy gdy:</p>
+
+    <ul>
+        <li>Karta stanie się aktywna.</li>
+        <li>Gdy strona zostanie kliknięta i stanie się naszym aktualnym głównym kontekstem działania w systemie operacyjnym.</li>
+    </ul>
+
+    <h2>window.onblur</h2>
+
+    <p>Zdarzenie uruchamia się gdy obiekt window stanie się nieaktywny czyli wtedy gdy:</p>
+
+    <ul>
+        <li>Karta stanie się nieaktywna.</li>
+        <li>Gdy strona zostanie odklikana: np. poprzez aktywowanie innej aplikacji, kliknięcie w DevTools czy na pulpit.</li>
+    </ul>
+
+    <h3>Wykorzysatnie z document.hidden, document.visibilityState</h3>
+
+    <p>Według moich eksperymentów wykorzystanie document.hidden z document.visibilityState wiąże się z problemem aktualności tych wartości w zdarzeniu onblur. Zdarzenie wykonuje się przed aktualizacją tych wartości dlatego po opuszczeniu karty nie możemy bezpiecznie wykonać na nich warunku. Najprostrzym obejściem jest opóźnienie wykonania kodu wrzucając go na koniec kolejki event loopa np. z pomocą setTimeout</p>
+
+    <script>
+
+        function logger(title) {
+            console.log(`-----${title}-----`);
+            console.log('document.hidden:', document.hidden);
+            console.log('document.visibilityState:', document.visibilityState);
+        }
+
+        window.addEventListener('focus', function (event) {
+            document.title = "Focused";
+            logger('onfocus');
+        });
+
+        window.addEventListener('blur', function (event) {
+            document.title = "Blurred";
+            logger('onblur');
+
+            // setTimeout(() => {
+            //     if (document.hidden || document.visibilityState === 'visible') {
+            //         document.title = "Blurred after timeout. I'm hidden!";
+            //     }
+            //     logger('onblur (after timeout)');
+            // }, 0);
+        });
+
+    </script>
+
+</body>
+</html>

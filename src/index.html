@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect hidden tab</title>
+</head>
+<body>
+    <h1>Detect hidden tab</h1>
+
+    <ul>
+        <li><a href="./page-visibility-api.html"><b>Page Visibility API</b></a></li>
+        <li><a href="./window-blur-focus.html">window.(blur|focus)</a></li>
+    </ul>
+
+    <hr />
+
+    <h2>Document.hidden</h2>
+
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/hidden">
+            https://developer.mozilla.org/en-US/docs/Web/API/Document/hidden
+        </a>
+    </p>
+
+    <p>Przechowuje booleana, który zawiera informację czy karta jest widoczna czy nie.</p>
+    <p>UWAGA! Ze względu na prerendering, może się zdarzyć, że document.hidden będzie wskazywać na true, nawet jeżeli strona będzie widoczna dla użytkownika.</p>
+    <p>Dodatkowo Firefox od wersji 56 ustawia wartośc na true (macOS) gdy okno jest całkowicie zakryte przez inną aplikację.</p>
+
+    <h2>Document.visibilityState</h2>
+
+    <p>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState">
+            https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState
+        </a>
+    </p>
+
+    <p>Wskazuje czy karta jest w jakikolwiek sposób widoczna (visible, hidden). Wystarczy jeden pixel, żeby wartość była visible.</p>
+    <p>Stan visibilityState elementu iframe jest taki sam jak rodzica czyli dziedziczy tą wartość od naszej karty.</p>
+
+    <script>
+        function logger() {
+            console.log('document.hidden', document.hidden);
+            console.log('document.visibilityState', document.visibilityState);
+            console.log('-----');
+        }
+ 
+        setInterval(logger, 1500);
+    </script>
+</body>
+</html>

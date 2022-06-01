@@ -1,0 +1,27 @@
+{
+  "name": "detect-hidden-tab-docs",
+  "version": "1.0.0",
+  "description": "A set of approaches to detect when a browser tab is hidden or not visible.",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve src",
+    "dev": "live-server src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyczynski/detect-hidden-tab-docs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tyczynski/detect-hidden-tab-docs/issues"
+  },
+  "homepage": "https://github.com/tyczynski/detect-hidden-tab-docs#readme",
+  "dependencies": {
+    "serve": "^13.0.2"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
